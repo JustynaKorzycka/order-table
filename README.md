@@ -4,7 +4,7 @@ The purpose of the application is to display the information about orders contai
 
 ## Installation
 
-git clone httpshttps://github.com/JustynaKorzycka/order-table.git
+git clone https://github.com/JustynaKorzycka/order-table.git
 
 npm install
 
