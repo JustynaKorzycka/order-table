@@ -21,10 +21,10 @@ const OrderTable = ({ data }: Props) => {
         </tr>
       </thead>
       <tbody>
-          { data.map((record, index) => <TableRecord key={ index } record={ record } />) }
-          {data.length === 0 && 'No match'}
+          {data.map((record, index) => <TableRecord key={ index } record={ record } />)}
       </tbody>
       </table>
+      {data.length === 0 && 'No match'}
       </div>
   )
 }

@@ -9,10 +9,7 @@ import { DataTable } from './types';
 
 const App = () => {
 
- 
   const [filterData, setFilterData] = useState<DataTable[]>([]);
-
-
   const dataTable = useFetchData()
   
   useEffect(() => {

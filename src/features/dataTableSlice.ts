@@ -39,7 +39,6 @@ export const dataTableSlice = createSlice({
         state.status = 'failed'
       });
   }
- 
 })
 
 export default dataTableSlice.reducer;
