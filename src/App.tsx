@@ -1,24 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useCallback, useEffect, useState } from 'react';
 import './App.css';
+import FilterData from './components/FilterData/FilterData';
+import Loading from './components/Loading/Loading';
+import OrderTable from './components/Table/OrderTable';
+import useFetchData from './Hooks/useFetchData';
+import { DataTable } from './types';
 
-function App() {
+
+const App = () => {
+
+ 
+  const [filterData, setFilterData] = useState<DataTable[]>([]);
+
+
+  const dataTable = useFetchData()
+  
+  useEffect(() => {
+    setFilterData(dataTable.data)
+  }, [dataTable])
+  
+  const handleSetSearchData = useCallback((toSearch: string) : void=> {
+    const filterData = dataTable.data.filter((record) => record.description.toLowerCase().includes(toSearch.toLowerCase()))
+    setFilterData(filterData);
+  },[filterData, setFilterData])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="wrapper">
+      <h1>Order table</h1>
+      <FilterData handleSetSearchData={handleSetSearchData} />
+      { dataTable.status !== 'success' ? <Loading /> : <OrderTable data={ filterData } /> }
     </div>
   );
 }
